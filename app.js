@@ -11,8 +11,18 @@ async function getData() {
 
     let data = await serverResponse.json();
     console.log(data.results);
+    return data.results;
   } catch (error) {
     console.error(error.message);
   }
 }
-getData();
+// getData();
+
+async function insertDataToHTML(target) {
+  let data = await getData();
+  let container = document.querySelector(target);
+  let html = container.innerHTML;
+
+  html = data[0].original_title;
+}
+insertDataToHTML(".movie");

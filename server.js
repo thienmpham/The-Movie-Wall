@@ -6,13 +6,16 @@ const TOKEN = process.env.BEARER_TOKEN;
 const ACCOUNT_ID = process.env.ACCOUNT_ID;
 
 const url = {
-  discover:
+  discover: new URL(
     "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc",
+  ),
 };
 
 const method = { get: "GET", post: "POST" };
 
 function createServer(url, method) {
+  let path = url.pathname;
+
   const server = http.createServer(async (req, res) => {
     const options = {
       method: method,
@@ -29,11 +32,21 @@ function createServer(url, method) {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "http://127.0.0.1:5500",
     });
+
+    routeData(path, req.method);
+
     res.end(JSON.stringify(tmdbData));
-    console.log("Data:", tmdbData);
+    // console.log("Data:", tmdbData);
   });
   server.listen(PORT);
   console.log("shhhhhh... the server is listening");
 }
 
 createServer(url.discover, method.get);
+
+// routing is a series of checks
+function routeData(path, method) {
+  if (path.includes("discover") == true && method == "GET") {
+    console.log("routing discover data");
+  }
+}
