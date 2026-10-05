@@ -4,7 +4,7 @@ async function getData() {
   // routing
 
   try {
-    let serverResponse = await fetch(url);
+    let serverResponse = await fetch("http://localhost:4000/discover");
     if (!serverResponse.ok) {
       throw new Error(`Server status: ${serverResponse.status}`);
     }
