@@ -25,9 +25,6 @@ function createServer(method, link) {
       },
     };
 
-    // let tmdbResponse = await fetch(url, options);
-    // let tmdbData = await tmdbResponse.json(); // turn data in json
-
     res.writeHead(200, {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "http://127.0.0.1:5500",

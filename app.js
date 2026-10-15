@@ -16,13 +16,19 @@ async function getData() {
     console.error(error.message);
   }
 }
-// getData();
 
 async function insertDataToHTML(target) {
   let data = await getData();
   let container = document.querySelector(target);
-  let html = container.innerHTML;
 
-  html = data[0].original_title;
+  iterateArray(data);
+  container.textContent = data[0].original_title;
 }
-insertDataToHTML(".movie");
+insertDataToHTML(".body");
+
+function iterateArray(data) {
+  const obj = [];
+  for (i = 0; i < data.length; i++) {
+    data = data[i].original_title;
+  }
+}

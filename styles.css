@@ -1,0 +1,34 @@
+:root {
+  --bg: #bbaeae;
+  --margin: 2rem;
+}
+
+body {
+  margin: var(--margin);
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 1fr 2fr;
+  grid-template-areas:
+    "hero panel"
+    "body panel";
+  min-height: 100vh;
+  gap: 2rem;
+}
+
+#hero {
+  background-color: var(--bg);
+  grid-area: hero;
+}
+
+#body {
+  background-color: var(--bg);
+  grid-area: body;
+}
+
+#panel {
+  background-color: var(--bg);
+  grid-area: panel;
+}
