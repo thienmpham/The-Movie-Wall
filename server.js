@@ -37,14 +37,41 @@ function createServer(method, link) {
   server.listen(PORT);
   console.log("shhhhhh... the server is listening");
 }
-
 createServer(method.get, link.discover);
+// createServer(method.get, link.image);
 
 // routing is a series of checks
 async function routeData(options, path, link, method) {
   if (path === "/discover" && method == "GET") {
+    let min = 0;
+    let max = 20;
+
     let tmdbResponse = await fetch(link, options);
     let tmdbData = await tmdbResponse.json(); // turn data in json
+    for (i = 0; i < 20; i++) {
+      iterateData(tmdbData.results[iterateNum(0, 20)].id);
+    }
     return tmdbData;
+  }
+  if (path === "/image" && method == "GET") {
+    let tmdbResponse = await fetch(link, options);
+    let tmdbData = await tmdbResponse.json(); // turn data in json
+  }
+}
+
+function storeMovieDetails(data) {
+  let obj = {};
+}
+
+function iterateData(data) {
+  console.log(data);
+  // for(i = 0; i < data.length; i++){
+  //   data[i].
+  // }
+}
+
+function iterateNum(min, max) {
+  for (i = min; i < max; i++) {
+    return i;
   }
 }

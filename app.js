@@ -2,7 +2,6 @@ async function getData() {
   const url = "http://localhost:4000";
 
   // routing
-
   try {
     let serverResponse = await fetch("http://localhost:4000/discover");
     if (!serverResponse.ok) {
