@@ -7,7 +7,7 @@ const ACCOUNT_ID = process.env.ACCOUNT_ID;
 
 const link = {
   discover: new URL(
-    "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc",
+    "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=20&sort_by=popularity.desc",
   ),
 };
 
@@ -48,12 +48,10 @@ async function routeData(options, path, link, method) {
 
     let tmdbResponse = await fetch(link, options);
     let tmdbData = await tmdbResponse.json(); // turn data in json
-    for (i = 0; i < 20; i++) {
-      iterateData(tmdbData.results[iterateNum(0, 20)].id);
-    }
+    tmdbData.page;
     return tmdbData;
   }
-  if (path === "/image" && method == "GET") {
+  if (path == "/image" && method == "GET") {
     let tmdbResponse = await fetch(link, options);
     let tmdbData = await tmdbResponse.json(); // turn data in json
   }
@@ -61,17 +59,4 @@ async function routeData(options, path, link, method) {
 
 function storeMovieDetails(data) {
   let obj = {};
-}
-
-function iterateData(data) {
-  console.log(data);
-  // for(i = 0; i < data.length; i++){
-  //   data[i].
-  // }
-}
-
-function iterateNum(min, max) {
-  for (i = min; i < max; i++) {
-    return i;
-  }
 }
