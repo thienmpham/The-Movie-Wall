@@ -7,7 +7,7 @@ const ACCOUNT_ID = process.env.ACCOUNT_ID;
 
 const link = {
   discover: new URL(
-    "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=20&sort_by=popularity.desc",
+    "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&sort_by=popularity.desc",
   ),
 };
 
@@ -43,12 +43,12 @@ createServer(method.get, link.discover);
 // routing is a series of checks
 async function routeData(options, path, link, method) {
   if (path === "/discover" && method == "GET") {
-    let min = 0;
-    let max = 20;
-
-    let tmdbResponse = await fetch(link, options);
+    let page = 2;
+    let newLink = `${link} page=${page} `;
+    let tmdbResponse = await fetch(newLink, options);
     let tmdbData = await tmdbResponse.json(); // turn data in json
-    tmdbData.page;
+
+    console.log(tmdbData);
     return tmdbData;
   }
   if (path == "/image" && method == "GET") {
