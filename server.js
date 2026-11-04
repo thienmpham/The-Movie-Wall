@@ -43,10 +43,17 @@ createServer(method.get, link.discover);
 // routing is a series of checks
 async function routeData(options, path, link, method) {
   if (path === "/discover" && method == "GET") {
-    let page = 2;
-    let newLink = `${link} page=${page} `;
-    let tmdbResponse = await fetch(newLink, options);
-    let tmdbData = await tmdbResponse.json(); // turn data in json
+    let page = 1;
+    let newLink;
+    let tmdbResponse;
+    let tmdbData;
+
+    while (page < 20) {
+      newLink = `${link} page=${page} `;
+      tmdbResponse = await fetch(newLink, options);
+      tmdbData = await tmdbResponse.json(); // turn data in json
+      page++;
+    }
 
     console.log(tmdbData);
     return tmdbData;
