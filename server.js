@@ -47,23 +47,20 @@ async function routeData(options, path, link, method) {
     let newLink;
     let tmdbResponse;
     let tmdbData;
+    let dataArray = [];
 
     while (page < 20) {
-      newLink = `${link} page=${page} `;
+      newLink = `${link}&page=${page} `;
       tmdbResponse = await fetch(newLink, options);
       tmdbData = await tmdbResponse.json(); // turn data in json
+      dataArray.push(tmdbData);
       page++;
     }
 
-    console.log(tmdbData);
-    return tmdbData;
+    return dataArray;
   }
   if (path == "/image" && method == "GET") {
     let tmdbResponse = await fetch(link, options);
     let tmdbData = await tmdbResponse.json(); // turn data in json
   }
-}
-
-function storeMovieDetails(data) {
-  let obj = {};
 }
