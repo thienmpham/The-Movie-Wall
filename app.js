@@ -19,23 +19,14 @@ async function getData() {
 async function insertDataToHTML(target) {
   let data = await getData();
   let container = document.querySelector(target);
+  let dataArray = [];
 
   if (typeof data === "object") {
-    let dataArray = iterateArray(data, "results");
+    dataArray.push(iterateArray(data, "results"));
   }
-
-  container.textContent = data[0].original_title;
 }
 insertDataToHTML(".body");
 
-// function iterateArray(data, detail) {
-//   const array = [];
-//   for (let i = 0; i < data.length; i++) {
-//     array.push(data[i][detail]);
-//   }
-//   return array;
-// }
-
 function iterateArray(dataArray, detail) {
-  return dataArray.map((data) => data.results);
+  return dataArray.map((data) => data[detail]);
 }
