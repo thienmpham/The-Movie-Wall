@@ -53,7 +53,7 @@ async function routeData(options, path, link, method) {
       newLink = `${link}&page=${page} `;
       tmdbResponse = await fetch(newLink, options);
       tmdbData = await tmdbResponse.json(); // turn data in json
-      dataArray.push(tmdbData);
+      dataArray.push(tmdbData.results);
       page++;
     }
 

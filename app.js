@@ -22,11 +22,14 @@ async function insertDataToHTML(target) {
   let dataArray = [];
 
   if (typeof data === "object") {
-    dataArray.push(iterateArray(data, "results"));
+    dataArray.push(iterateArray(data, "title"));
   }
 }
 insertDataToHTML(".body");
 
 function iterateArray(dataArray, detail) {
-  return dataArray.map((data) => data[detail]);
+  return dataArray.map((data) =>
+    //iterates through nested array
+    data.map((nested) => nested[detail]),
+  );
 }
