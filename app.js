@@ -23,13 +23,26 @@ async function insertDataToHTML(target) {
 
   if (typeof data === "object") {
     dataArray.push(iterateArray(data, "title"));
+    // iterate through dataArray
+    for (let i = 0; i < dataArray.length; i++) {
+      container.textContent += dataArray[i];
+    }
   }
 }
-insertDataToHTML(".body");
+insertDataToHTML("#body");
 
 function iterateArray(dataArray, detail) {
   return dataArray.map((data) =>
     //iterates through nested array
     data.map((nested) => nested[detail]),
   );
+}
+
+function cloneElement(element) {
+  const target = document.querySelector(element);
+  let clone = target.cloneNode();
+}
+
+function updateID(target, name) {
+  target.id += `${name}`;
 }
